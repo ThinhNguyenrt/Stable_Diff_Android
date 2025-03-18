@@ -37,17 +37,29 @@ const BottomBar: React.FC<BottomBarProps> = ({ onSelectTool }) => {
             {index > 0 && <View style={styles.separator} />}
 
             <TouchableOpacity
-              style={[styles.button, selected === btn.id && styles.selectedButton]}
+              style={[
+                styles.button,
+                selected === btn.id && styles.selectedButton,
+              ]}
               onPress={() => handlePress(btn.id)}
             >
               {btn.custom ? (
-                <View style={[styles.blackCircle, selected === btn.id && { backgroundColor: "black" }]} />
-              ) : (
+                <View
+                  style={[
+                    styles.blackCircle,
+                    selected === btn.id && { backgroundColor: "black" },
+                  ]}
+                />
+              ) : btn.icon ? (
                 <View style={styles.iconWrapper}>
-                  {React.cloneElement(btn.icon, { color: selected === btn.id ? "black" : "gray" })}
+                  {React.cloneElement(btn.icon, {
+                    color: selected === btn.id ? "black" : "gray",
+                  })}
                 </View>
+              ) : null}
+              {selected === btn.id && (
+                <Text style={styles.buttonText}>{btn.label}</Text>
               )}
-              {selected === btn.id && <Text style={styles.buttonText}>{btn.label}</Text>}
             </TouchableOpacity>
           </React.Fragment>
         ))}
