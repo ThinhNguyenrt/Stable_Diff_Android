@@ -1,5 +1,5 @@
-import SearchBar from "@/components/reuseComponents/SearchBar";
-import { StyleSheet, View } from "react-native";
+import SearchBar from "@/components/panels/AiImages/components/SearchBar";
+import { StyleSheet, Text, View } from "react-native";
 import ReferenceImageUploader from "./components/ReferenceImageUploader";
 import CategoryList from "./components/CategoryList";
 
@@ -30,8 +30,9 @@ const styles = StyleSheet.create({
         backgroundColor: "white",
         padding: 16,
         borderRadius: 10,
-        width: '85%', // Điều chỉnh chiều rộng phù hợp
+        width: '60%', // Điều chỉnh chiều rộng phù hợp
         elevation: 5,
+        right: 20, // Đưa sang phải
     },
 });
 

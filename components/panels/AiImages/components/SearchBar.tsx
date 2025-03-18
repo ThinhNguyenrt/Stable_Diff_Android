@@ -25,10 +25,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#f0f0f0",
     borderRadius: 10,
     paddingHorizontal: 10,
-    height: 40,
+    height: 50,
   },
   icon: {
     marginRight: 8,
+    color: "black",
   },
   input: {
     flex: 1,
