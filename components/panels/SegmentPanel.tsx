@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 const segments = [
   { color: "#FF4848", label: "Wall" },
@@ -13,10 +13,10 @@ const SegmentPanel = () => {
   return (
     <View style={styles.container}>
       {segments.map((item, index) => (
-        <View key={index} style={styles.row}>
+        <TouchableOpacity key={index} style={styles.row} activeOpacity={0.6}>
           <View style={[styles.colorCircle, { backgroundColor: item.color }]} />
           <Text style={styles.text}>{item.label}</Text>
-        </View>
+        </TouchableOpacity>
       ))}
     </View>
   );
@@ -24,9 +24,9 @@ const SegmentPanel = () => {
 
 const styles = StyleSheet.create({
   container: {
-    position: "absolute", // Định vị tuyệt đối
+    position: "absolute",
     bottom: 90,
-    width:"40%",
+    width: "40%",
     backgroundColor: "white",
     padding: 10,
     borderRadius: 10,

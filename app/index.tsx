@@ -4,6 +4,7 @@ import BottomBar from "../components/reuseComponents/BottomBar";
 import { useState } from "react";
 import SelectionPanel from '../components/panels/SelectionPanel';
 import SegmentPanel from '../components/panels/SegmentPanel';
+import AdjustPanel from '../components/panels/AdjustPanel';
 export default function HomeScreen() {
   const [selectedTool, setSelectedTool] = useState<string | null>(null);
 
@@ -14,6 +15,7 @@ export default function HomeScreen() {
         {/* Hiển thị nội dung dựa vào tool đã chọn */}
         {selectedTool === "selection" && <SelectionPanel />}
         {selectedTool === "segment" && <SegmentPanel />}
+        {selectedTool === "adjust" && <AdjustPanel/>}
       </View>
       <BottomBar onSelectTool={setSelectedTool} />
     </View>

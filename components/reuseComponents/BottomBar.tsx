@@ -1,27 +1,27 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import AntDesign from "@expo/vector-icons/AntDesign";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Brush from "../../assets/images/brush.png";
+import Segment from "../../assets/images/image.png";
+import Adjust from "../../assets/images/adjust.png";
 
 interface BottomBarProps {
-  onSelectTool: (tool: string | null) => void; // Định nghĩa kiểu cho onSelectTool
+  onSelectTool: (tool: string | null) => void;
 }
 
 const BottomBar: React.FC<BottomBarProps> = ({ onSelectTool }) => {
   const [selected, setSelected] = useState<string | null>(null);
 
   const buttons = [
-    { id: "selection", label: "Selection", icon: <FontAwesome name="paint-brush" size={22} color="black" /> },
+    { id: "selection", label: "Selection", icon: Brush },
     { id: "segment", label: "Segment", custom: true },
-    { id: "ai_images", label: "AI Images", icon: <Ionicons name="images" size={24} color="black" /> },
-    { id: "adjust", label: "Adjust", icon: <MaterialCommunityIcons name="tune" size={24} color="black" /> },
+    { id: "ai_images", label: "AI Images", icon: Segment },
+    { id: "adjust", label: "Adjust", icon: Adjust },
   ];
 
   const handlePress = (id: string) => {
     setSelected(id);
-    onSelectTool(id); // Cập nhật tool được chọn ở HomeScreen
+    onSelectTool(id);
   };
 
   return (
@@ -37,10 +37,7 @@ const BottomBar: React.FC<BottomBarProps> = ({ onSelectTool }) => {
             {index > 0 && <View style={styles.separator} />}
 
             <TouchableOpacity
-              style={[
-                styles.button,
-                selected === btn.id && styles.selectedButton,
-              ]}
+              style={[styles.button, selected === btn.id && styles.selectedButton]}
               onPress={() => handlePress(btn.id)}
             >
               {btn.custom ? (
@@ -51,15 +48,15 @@ const BottomBar: React.FC<BottomBarProps> = ({ onSelectTool }) => {
                   ]}
                 />
               ) : btn.icon ? (
-                <View style={styles.iconWrapper}>
-                  {React.cloneElement(btn.icon, {
-                    color: selected === btn.id ? "black" : "gray",
-                  })}
-                </View>
+                <Image
+                  source={btn.icon}
+                  style={[
+                    styles.icon,
+                    { tintColor: selected === btn.id ? "black" : "gray" },
+                  ]}
+                />
               ) : null}
-              {selected === btn.id && (
-                <Text style={styles.buttonText}>{btn.label}</Text>
-              )}
+              {selected === btn.id && <Text style={styles.buttonText}>{btn.label}</Text>}
             </TouchableOpacity>
           </React.Fragment>
         ))}
@@ -112,17 +109,15 @@ const styles = StyleSheet.create({
     height: 24,
     backgroundColor: "#ddd",
   },
-  iconWrapper: {
-    width: 24,
-    height: 24,
-    alignItems: "center",
-    justifyContent: "center",
-  },
   buttonText: {
     marginLeft: 8,
     fontSize: 14,
     fontWeight: "bold",
     color: "black",
+  },
+  icon: {
+    width: 24,
+    height: 24,
   },
 });
 

@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { View, Text, TouchableOpacity, Image, StyleSheet, TextInput } from "react-native";
-import SlideBar from "../reuseComponents/SlideBar";
-import BrushPlus from "../../assets/images/brushPlus.jpg";
-import BrushMinus from "../../assets/images/brushMinus.jpg";
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import SlideBar from '../reuseComponents/SlideBar';
+import BrushPlus from '../../assets/images/brushPlus.jpg';
+import BrushMinus from '../../assets/images/brushMinus.jpg';
 
 const SelectionPanel = () => {
   const [selectedMode, setSelectedMode] = useState("plus"); // "plus" hoặc "minus"
@@ -10,6 +10,7 @@ const SelectionPanel = () => {
 
   return (
     <View style={styles.container}>
+      {/* Mode Selection */}
       <View style={styles.modeRow}>
         <Text style={styles.label}>Mode</Text>
         <View style={styles.modeContainer}>
@@ -37,31 +38,37 @@ const SelectionPanel = () => {
         </View>
       </View>
 
-      {/* Size Slider */}
-      <View style={styles.sliderContainer}>
-        <SlideBar
-          label="Size"
-          minimumValue={10}
-          maximumValue={100}
-          initialValue={size}
-          fixedPoint={0}
-          step={1}
-          isPercent={false} // nếu không cần hiển thị dạng phần trăm, đặt false
-          onValueChange={(value) => setSize(value)}
-        />
-      </View>
+      {/* Nội dung thay đổi theo chế độ */}
+      {selectedMode === "plus" ? (
+        <View style={styles.sliderContainer}>
+          <SlideBar
+            label="Size"
+            minimumValue={10}
+            maximumValue={100}
+            initialValue={size}
+            fixedPoint={0}
+            step={1}
+            isPercent={false}
+            onValueChange={(value) => setSize(value)}
+          />
+        </View>
+      ) : (
+        <View style={styles.textContainer}>
+          <Text style={styles.brushMinusText}>This is brush minus</Text>
+        </View>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    position: "absolute", // Định vị tuyệt đối
-    bottom: 90, // Đưa xuống gần bottom bar
+    position: "absolute",
+    bottom: 90,
     backgroundColor: "white",
     padding: 16,
     borderRadius: 10,
-    width: '85%', // Điều chỉnh chiều rộng phù hợp
+    width: "85%",
     elevation: 5,
   },
   label: {
@@ -79,41 +86,35 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "#F7F7F7",
-    padding: 4, // Giảm padding để sát với thiết kế
-    borderRadius: 10, // Bo tròn nhẹ giống thiết kế
+    padding: 4,
+    borderRadius: 10,
     width: "80%",
   },
   modeButton: {
-    width: "50%", // Điều chỉnh chiều rộng để tạo hình chữ nhật
-    aspectRatio:2, // Chiều cao vừa phải để nút không quá to
+    width: "50%",
+    aspectRatio: 2,
     alignItems: "center",
     justifyContent: "center",
-    borderRadius: 6, // Bo tròn nhẹ
-
+    borderRadius: 6,
   },
   selectedButton: {
-    backgroundColor: "white", // Màu nền khi được chọn
+    backgroundColor: "white",
   },
   icon: {
     width: 24,
     height: 24,
   },
-  sizeContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-  sizeInput: {
-    width: 50,
-    height: 32,
-    textAlign: "center",
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 8,
-    marginRight: 10,
-    fontSize: 16,
-  }  ,
   sliderContainer: {
     alignItems: "center",
+  },
+  textContainer: {
+    alignItems: "center",
+    marginTop: 10,
+  },
+  brushMinusText: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "red",
   },
 });
 
