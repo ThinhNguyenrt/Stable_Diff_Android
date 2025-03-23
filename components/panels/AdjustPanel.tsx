@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
-import SlideBar from "../reuseComponents/SlideBar";
+import React, { useState } from 'react';
+import { View, StyleSheet, TouchableOpacity, Text, Image } from 'react-native';
+import SlideBar from '../reuseComponents/SlideBar';
 
 const AdjustPanel: React.FC = () => {
   const [selected, setSelected] = useState<'brightness' | 'hsl'>('brightness');
@@ -23,13 +23,13 @@ const AdjustPanel: React.FC = () => {
 
       <View style={styles.toggleContainer}>
         <TouchableOpacity
-          style={[styles.toggleButton, selected === 'brightness' && styles.selectedButton]}
+          style={[styles.toggleButton, styles.leftButton, selected === 'brightness' && styles.selectedButton]}
           onPress={() => setSelected('brightness')}>
           <Image source={require('../../assets/images/brightness.png')} style={[styles.icon, selected === 'brightness' && styles.selectedIcon]} />
           <Text style={[styles.text, selected === 'brightness' && styles.selectedText]}>Brightness</Text>
         </TouchableOpacity>
         <TouchableOpacity
-          style={[styles.toggleButton, selected === 'hsl' && styles.selectedButton]}
+          style={[styles.toggleButton, styles.rightButton, selected === 'hsl' && styles.selectedButton]}
           onPress={() => setSelected('hsl')}>
           <Image source={require('../../assets/images/hsl.png')} style={[styles.icon, selected === 'hsl' && styles.selectedIcon]} />
           <Text style={[styles.text, selected === 'hsl' && styles.selectedText]}>HSL</Text>
@@ -42,8 +42,8 @@ const AdjustPanel: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    bottom:90,
-    position:"absolute"
+    bottom: 90,
+    position: "absolute",
   },
   brightnessContainer: {
     backgroundColor: 'white',
@@ -71,8 +71,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: "100%",
     alignSelf: "center",
-    marginTop: 20,
-    paddingVertical: 20,
     backgroundColor: 'white',
     borderRadius: 10,
     shadowColor: "#000",
@@ -80,13 +78,23 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 5,
-  },  
+  },
   toggleButton: {
-    
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     padding: 10,
-    borderRadius: 10,
+  },
+  leftButton: {
+    borderTopLeftRadius: 10,
+    borderBottomLeftRadius: 10,
+    borderRightWidth: 1,
+    borderRightColor: '#D9D9D9',
+  },
+  rightButton: {
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
   },
   selectedButton: {
     backgroundColor: '#D9D9D9',
