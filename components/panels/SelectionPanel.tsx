@@ -38,25 +38,19 @@ const SelectionPanel = () => {
         </View>
       </View>
 
-      {/* Nội dung thay đổi theo chế độ */}
-      {selectedMode === "plus" ? (
-        <View style={styles.sliderContainer}>
-          <SlideBar
-            label="Size"
-            minimumValue={10}
-            maximumValue={100}
-            initialValue={size}
-            fixedPoint={0}
-            step={1}
-            isPercent={false}
-            onValueChange={(value) => setSize(value)}
-          />
-        </View>
-      ) : (
-        <View style={styles.textContainer}>
-          <Text style={styles.brushMinusText}>This is brush minus</Text>
-        </View>
-      )}
+      {/* Luôn hiển thị Slider */}
+      <View style={styles.sliderContainer}>
+        <SlideBar
+          label="Size"
+          minimumValue={10}
+          maximumValue={100}
+          initialValue={size}
+          fixedPoint={0}
+          step={1}
+          isPercent={false}
+          onValueChange={(value) => setSize(value)}
+        />
+      </View>
     </View>
   );
 };
@@ -106,15 +100,6 @@ const styles = StyleSheet.create({
   },
   sliderContainer: {
     alignItems: "center",
-  },
-  textContainer: {
-    alignItems: "center",
-    marginTop: 10,
-  },
-  brushMinusText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "red",
   },
 });
 
