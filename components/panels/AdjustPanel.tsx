@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity, Text, Image } from 'react-native';
 import SlideBar from '../reuseComponents/SlideBar';
-
+import ColorPicker from '../reuseComponents/ColorPicker';
 const AdjustPanel: React.FC = () => {
   const [selected, setSelected] = useState<'brightness' | 'hsl'>('brightness');
   const [brightness, setBrightness] = useState(50);
@@ -17,7 +17,7 @@ const AdjustPanel: React.FC = () => {
       )}
       {selected === 'hsl' && (
         <View style={styles.hslContainer}>
-          <Text style={styles.hslText}>This is HSL</Text>
+          <ColorPicker/>
         </View>
       )}
 
@@ -78,14 +78,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 5,
-  },
+    overflow: "hidden", // Tránh bị thay đổi khi hover hoặc nhấn vào
+  },  
   toggleButton: {
-    flex: 1,
+    width: "50%", // Đảm bảo hai nút có chiều rộng bằng nhau
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,
-  },
+  },  
   leftButton: {
     borderTopLeftRadius: 10,
     borderBottomLeftRadius: 10,
