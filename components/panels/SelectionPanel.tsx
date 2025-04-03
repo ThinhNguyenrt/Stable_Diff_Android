@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import SlideBar from '../reuseComponents/SlideBar';
-import BrushPlus from '../../assets/images/brushPlus.jpg';
-import BrushMinus from '../../assets/images/brushMinus.jpg';
+import React, { useState } from "react";
+import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
+import SlideBar from "../reuseComponents/SlideBar";
+import BrushPlus from "../../assets/images/brushPlus.png";
+import BrushMinus from "../../assets/images/brushMinus.png";
 
 const SelectionPanel = () => {
   const [selectedMode, setSelectedMode] = useState("plus"); // "plus" hoặc "minus"
@@ -22,7 +22,7 @@ const SelectionPanel = () => {
             ]}
             onPress={() => setSelectedMode("plus")}
           >
-            <Image source={BrushPlus} style={styles.icon} />
+            <Image source={BrushPlus} style={[styles.icon, { tintColor: "black" }]} />
           </TouchableOpacity>
 
           {/* Brush Minus Button */}
@@ -33,7 +33,7 @@ const SelectionPanel = () => {
             ]}
             onPress={() => setSelectedMode("minus")}
           >
-            <Image source={BrushMinus} style={styles.icon} />
+            <Image source={BrushMinus} style={[styles.icon, { tintColor: "black" }]} />
           </TouchableOpacity>
         </View>
       </View>
